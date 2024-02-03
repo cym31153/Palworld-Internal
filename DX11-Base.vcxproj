@@ -173,17 +173,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="config.h" />
-    <ClInclude Include="database.h" />
-    <ClInclude Include="feature.h" />
+    <ClInclude Include="include\config.h" />
     <ClInclude Include="include\Console.hpp" />
     <ClInclude Include="include\D3D11Window.hpp" />
+    <ClInclude Include="include\database.h" />
+    <ClInclude Include="include\feature.h" />
     <ClInclude Include="include\Game.hpp" />
     <ClInclude Include="include\helper.h" />
     <ClInclude Include="include\Hooking.hpp" />
+    <ClInclude Include="include\initialize.hpp" />
+    <ClInclude Include="include\ItemList.hpp" />
     <ClInclude Include="include\Menu.hpp" />
-    <ClInclude Include="initialize.hpp" />
-    <ClInclude Include="ItemList.hpp" />
     <ClInclude Include="libs\ImGui\imconfig.h" />
     <ClInclude Include="libs\ImGui\imgui.h" />
     <ClInclude Include="libs\ImGui\imgui_impl_dx11.h" />
@@ -207,9 +207,7 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="config.cpp" />
     <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="feature.cpp" />
     <ClCompile Include="libs\ImGui\imgui.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../../pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">../../pch.h</PrecompiledHeaderFile>
@@ -295,6 +293,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\config.cpp" />
     <ClCompile Include="src\Console.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">../pch.h</PrecompiledHeaderFile>
@@ -307,6 +306,7 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">../pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">../pch.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="src\feature.cpp" />
     <ClCompile Include="src\Game.cpp">
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">../pch.h</PrecompiledHeaderFile>

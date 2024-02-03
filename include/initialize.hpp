@@ -19,7 +19,7 @@ void ClientBGThread()
     }
 }
 
-DWORD WINAPI MainThread_Initialize()
+DWORD WINAPI MainThread_Initialize(LPVOID dwModule)
 {
     g_Console = std::make_unique<Console>();
 #if DEBUG
