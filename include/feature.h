@@ -51,6 +51,14 @@ void SetInfiniteAmmo(bool bInfAmmo);
 
 void SetCraftingSpeed(float mNewSpeed, bool bRestoreDefault = false);
 
+void SetPlayerInventoryWeight(float newWeight);
+
+void SetPickupsWeight(float newWeight);
+
+void ApplyStatusBuff(SDK::APalCharacter* pChar, EPalStatusID newStatus);
+
+void RemoveStatusBuff(SDK::APalCharacter* pChar, EPalStatusID remStatus);
+
 void AddTechPoints(__int32 mPoints);
 
 void AddAncientTechPoints(__int32 mPoints);
@@ -59,7 +67,15 @@ void RemoveTechPoints(__int32 mPoints);
 
 void RemoveAncientTechPoint(__int32 mPoints);
 
+void ClearWorldMap();
+
+void SetWorldTime(__int32 mHour);
+
 float GetDistanceToActor(SDK::AActor* pLocal, SDK::AActor* pTarget);
+
+bool GetActorNickName(SDK::APalCharacter* pCharacter, std::string* outName);
+
+bool GetItemName(SDK::APalMapObject* pMap, std::string* outName);
 
 void ForgeActor(SDK::AActor* pTarget, float mDistance, float mHeight = 0.0f, float mAngle = 0.0f);
 
@@ -68,6 +84,8 @@ void SendDamageToActor(SDK::APalCharacter* pTarget, int32 damage, bool bSpoofAtt
 void DeathAura(__int32 dmgAmount, float mDistance, bool bIntensityEffect = false, bool bVisualEffect = false, SDK::EPalVisualEffectID visID = SDK::EPalVisualEffectID::None);
 
 void TeleportAllPalsToCrosshair(float mDistance);
+
+void TeleportToMapMarker();
 
 void AddWaypointLocation(std::string wpName);
 

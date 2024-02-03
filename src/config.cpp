@@ -132,6 +132,21 @@ SDK::APalWeaponBase* config::GetPlayerEquippedWeapon()
     return pWeaponInventory->HasWeapon;
 }
 
+//  credit: liquidace
+bool config::InGame()
+{
+    SDK::UWorld* pWorld = Config.gWorld;
+    SDK::UPalUtility* pUtility = Config.pPalUtility;
+    if (!pWorld || !pUtility)
+        return false;
+
+    SDK::APalGameStateInGame* pGameState = pUtility->GetPalGameStateInGame(pWorld);
+    if (!pGameState)
+        return false;
+
+    return pGameState->MaxPlayerNum >= 1;
+}
+
 bool config::GetTAllPlayers(SDK::TArray<class SDK::APalCharacter*>* outResult)
 {
     SDK::UPalCharacterImportanceManager* mPal = GetCharacterImpManager();
@@ -246,6 +261,8 @@ void config::Init()
     SDK::InitGObjects();
 
     Config.gWorld = Config.GetUWorld();
+    Config.kString = SDK::UKismetStringLibrary::GetDefaultObj();
+    Config.pPalUtility = SDK::UPalUtility::GetDefaultObj();
 
     TickFunc = (Tick)(Config.ClientBase + Config.offset_Tick);
 
