@@ -502,25 +502,6 @@ void SetCraftingSpeed(float mNewSpeed, bool bRestoreDefault)
 		mCraftSpeedArray[0].Value = bRestoreDefault ? 1.0f : mNewSpeed;
 }
 
-void SetPlayerInventoryWeight(float newWeight)
-{
-	UPalPlayerInventoryData* pInventory = Config.GetInventoryComponent();
-	if (!pInventory)
-		return;
-
-	pInventory->MaxInventoryWeight = newWeight;
-}
-
-
-void SetPickupsWeight(float newWeight)
-{
-	UPalPlayerInventoryData* pInventory = Config.GetInventoryComponent();
-	if (!pInventory)
-		return;
-
-	pInventory->NowItemWeight = newWeight;
-}
-
 //	credit: emoisback
 void ApplyStatusBuf(APalCharacter* pChar, EPalStatusID newStatus)
 {

@@ -51,13 +51,9 @@ void SetInfiniteAmmo(bool bInfAmmo);
 
 void SetCraftingSpeed(float mNewSpeed, bool bRestoreDefault = false);
 
-void SetPlayerInventoryWeight(float newWeight);
+void ApplyStatusBuff(SDK::APalCharacter* pChar, SDK::EPalStatusID newStatus);
 
-void SetPickupsWeight(float newWeight);
-
-void ApplyStatusBuff(SDK::APalCharacter* pChar, EPalStatusID newStatus);
-
-void RemoveStatusBuff(SDK::APalCharacter* pChar, EPalStatusID remStatus);
+void RemoveStatusBuff(SDK::APalCharacter* pChar, SDK::EPalStatusID remStatus);
 
 void AddTechPoints(__int32 mPoints);
 
