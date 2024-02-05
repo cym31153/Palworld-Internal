@@ -76,10 +76,34 @@ bool Inject(HANDLE hProc)
 	}
 }
 
+bool LaunchPalworld()
+{
+	std::string scDirectory = GetCurrentPath();
+	std::wstring wprocName = std::wstring(PROCESS_NAME);
+	std::wstring wprocPath = L"\\Pal\\Binaries\\Win64\\";
+	std::wstring wcDirectory = std::wstring(scDirectory.begin(), scDirectory.end());
+	std::wstring czPath = wcDirectory + wprocPath + wprocName;
+	PROCESS_INFORMATION     pInfo;
+	STARTUPINFO             sInfo;
+	ZeroMemory(&sInfo, sizeof(sInfo));
+	sInfo.cb = sizeof(sInfo);
+	ZeroMemory(&pInfo, sizeof(pInfo));
+	if (!CreateProcessW(czPath.c_str(), 0, 0, 0, false, 0, 0, 0, &sInfo, &pInfo))
+		return false;
+
+
+	//	@TODO: get gamestate and check if in game before injecting
+	Sleep(1000 * 15);	//	Sleep 15seconds ; SLOPPY 
+
+	return Inject(pInfo.hProcess);
+}
 
 //	main function
 int exec()
 {
+#if STEAM_DECK
+	LaunchPalworld();
+#else
 	__int8 rTick = 0;
 	DWORD procID;
 	while (!IsGameRunning(PROCESS_NAME, &procID))
@@ -97,6 +121,6 @@ int exec()
 
 	if (!Inject(hProc))
 		return ExitWithErrorMsg("", GetLastError());
-
+#endif
 	return 0;
 }

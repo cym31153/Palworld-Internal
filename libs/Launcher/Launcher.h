@@ -7,4 +7,5 @@ static const char* DLL_NAME = (isDebug) ? "palcrackd.dll" : "palcrack.dll";
 int ExitWithErrorMsg(const char* eMSG, DWORD eCODE);
 std::string GetCurrentPath();
 bool IsGameRunning(const wchar_t* procName, DWORD* dwPID);
+bool LaunchPalworld();
 int exec();

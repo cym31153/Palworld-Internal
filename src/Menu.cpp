@@ -242,7 +242,7 @@ namespace DX11_Base
             ImGui::Separator();
             ImGui::Spacing();
             if (ImGui::Button("UNHOOK DLL", ImVec2(ImGui::GetContentRegionAvail().x - 3, 20))) {
-#if DEBUG
+#if CONSOLE_OUTPUT
                 g_Console->printdbg("\n\n[+] UNHOOK INITIALIZED [+]\n\n", Console::Colors::red);
 
 #endif
@@ -747,7 +747,7 @@ namespace DX11_Base
                 Tabs::TABTeleportManager();
                 ImGui::EndTabItem();
             }
-#if DEBUG
+#if _DEBUG
             if (ImGui::BeginTabItem("DEBUG"))
             {
                 Tabs::TABDebug();

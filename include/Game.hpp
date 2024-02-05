@@ -2,11 +2,14 @@
 #include "helper.h"
 #include "Console.hpp"
 
-namespace DX11_Base {
+namespace DX11_Base 
+{
 	class GameData
 	{
 	public:
+		bool GamePadGetKeyState(WORD combinationButtons);
 
+	public:
 		explicit GameData();
 		~GameData() noexcept = default;
 		GameData(GameData const&) = delete;

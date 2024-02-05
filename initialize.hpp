@@ -19,10 +19,15 @@ void ClientBGThread()
     }
 }
 
+static int LastTick = 0;
 DWORD WINAPI MainThread_Initialize()
 {
+    //  WAIT FOR USER INPUT
+    while (!g_GameData->GamePadGetKeyState(XINPUT_GAMEPAD_RIGHT_THUMB | XINPUT_GAMEPAD_LEFT_THUMB) && GetAsyncKeyState(VK_INSERT) == 0)
+        Sleep(60);
+
     g_Console = std::make_unique<Console>();
-#if DEBUG
+#if CONSOLE_OUTPUT
     g_Console->InitializeConsole("Debug Console");
     g_Console->printdbg("ImGui Hook - Initializing . . .\n\n", Console::Colors::DEFAULT);
 #endif
@@ -36,7 +41,7 @@ DWORD WINAPI MainThread_Initialize()
     g_Menu = std::make_unique<Menu>();
     g_Hooking->Hook();
 
-#if DEBUG
+#if CONSOLE_OUTPUT
     g_Console->printdbg("Main::Initialized\nUWorld:\t0x%llX\n", Console::Colors::green, Config.gWorld);
 #endif
 
@@ -46,11 +51,11 @@ DWORD WINAPI MainThread_Initialize()
     std::thread WCMUpdate(ClientBGThread); // Initialize Loops Thread
     while (g_Running)
     {
-        if (GetAsyncKeyState(VK_INSERT) & 1)
+        if (g_GameData->GamePadGetKeyState(XINPUT_GAMEPAD_RIGHT_THUMB | XINPUT_GAMEPAD_LEFT_THUMB) && ((GetTickCount64() - LastTick) > 350))
         {
             g_GameVariables->m_ShowMenu = !g_GameVariables->m_ShowMenu;
             g_GameVariables->m_ShowHud = !g_GameVariables->m_ShowMenu;
-        
+            LastTick = GetTickCount64();
         }
 
 
@@ -59,6 +64,9 @@ DWORD WINAPI MainThread_Initialize()
             g_KillSwitch = false;
             g_Hooking->Unhook();
         }
+
+        std::this_thread::sleep_for(1ms);
+        std::this_thread::yield();
     }
 
     ///  EXIT
